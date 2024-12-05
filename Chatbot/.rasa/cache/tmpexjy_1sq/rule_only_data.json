@@ -1,0 +1,7 @@
+{
+  "rule_only_slots": [
+    "name",
+    "email"
+  ],
+  "rule_only_loops": []
+}

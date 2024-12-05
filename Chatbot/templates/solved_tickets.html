@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Megoldott Hibajegyek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Megoldott Hibajegyek</h2>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn">Vissza az admin felületre</a>
+    <table>
+        <tr>
+            <th>Jegyszám</th>
+            <th>Név</th>
+            <th>Email</th>
+            <th>Leírás</th>
+            <th>Státusz</th>
+            <th>Admin Megjegyzés</th>
+        </tr>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.ticket_number }}</td>
+            <td>{{ ticket.name }}</td>
+            <td>{{ ticket.email }}</td>
+            <td>{{ ticket.description }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.admin_comments }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

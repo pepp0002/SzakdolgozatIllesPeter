@@ -1,0 +1,33 @@
+# The config recipe.
+recipe: default.v1
+
+# The assistant project unique identifier
+assistant_id: 20241029-125516-online-traffic
+
+# Configuration for Rasa NLU.
+language: hu
+
+pipeline:
+   - name: WhitespaceTokenizer
+   - name: RegexFeaturizer
+   - name: CountVectorsFeaturizer
+   - name: DIETClassifier
+     epochs: 100
+#   - name: EntitySynonymMapper
+#   - name: FallbackClassifier
+#     threshold: 0.3
+#     ambiguity_threshold: 0.1
+
+# Configuration for Rasa Core.
+
+policies:
+  - name: MemoizationPolicy
+  - name: TEDPolicy
+    max_history: 40
+    epochs: 100
+  - name: RulePolicy
+    core_fallback_action_name: "action_default_fallback"
+    core_fallback_threshold: 0.4
+    nlu_threshold: 0.7
+
+

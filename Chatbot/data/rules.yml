@@ -1,0 +1,83 @@
+version: "3.1"
+
+rules:
+
+- rule: Köszönés az oldal betöltésekor
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+
+- rule: Hibabejelentés kezdeményezése alap
+  steps:
+    - intent: hibabejelentes
+    - action: action_reset_slots
+    - action: utter_hibabejelentes
+    - action: utter_ask_name
+
+- rule: Hibabejelentés kezdeményezése kiegészítő
+  steps:
+    - intent: kezdem_hibabejelentes
+    - action: action_reset_slots
+    - action: utter_hibabejelentes
+    - action: utter_ask_name
+
+- rule: Új hibabejelentés kezdeményezése
+  steps:
+    - intent: ujabb_hiba
+    - action: action_reset_slots
+    - action: utter_hibabejelentes
+    - action: utter_ask_name
+
+- rule: Hibabejelentés folytatása korábbi adatokkal
+  steps:
+    - intent: folytatom_hibabejelentes
+    - action: utter_ask_name
+
+- rule: Név bekérése hiba bejelentéshez
+  steps:
+    - intent: nev_megadasa
+    - action: utter_ask_email
+
+- rule: Email bekérése hiba bejelentéshez
+  steps:
+    - intent: email_megadasa
+    - action: utter_ask_error
+
+- rule: Hiba részleteinek bekérése és adatbázisba mentés
+  steps:
+    - intent: provide_details
+    - action: action_save_to_database
+
+
+- rule: Hiányzó név újbóli bekérése
+  condition:
+    - slot_was_set:
+        - name: null
+  steps:
+    - action: utter_ask_name
+
+- rule: Hiányzó email újbóli bekérése
+  condition:
+    - slot_was_set:
+        - email: null
+  steps:
+    - action: utter_ask_email
+
+- rule: Out of scope fallback
+  steps:
+    - intent: out_of_scope
+    - action: utter_fallback
+
+
+
+- rule: Jegy állapot lekérdezése
+  steps:
+    - intent: ticket_lekerdezes
+    - action: action_check_ticket_status
+
+
+- rule: Jegyszám megadása után lekérdezés
+  steps:
+    - intent: ticket_number_megadasa
+    - action: action_check_ticket_status

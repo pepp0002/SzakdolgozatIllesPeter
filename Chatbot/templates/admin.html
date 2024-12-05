@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Felület - Bejelentett Hibajegyek</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        .btn { padding: 8px 12px; text-decoration: none; color: white; background-color: #4CAF50; border-radius: 5px; }
+        .btn:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <h2>Admin Felület - Bejelentett Hibajegyek</h2>
+    <a href="{{ url_for('solved_tickets') }}" class="btn">Megoldott hibajegyek</a>
+    <table>
+        <tr>
+            <th>Jegyszám</th>
+            <th>Név</th>
+            <th>Email</th>
+            <th>Leírás</th>
+            <th>Státusz</th>
+            <th>Admin Megjegyzés</th>
+            <th>Művelet</th>
+        </tr>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.ticket_number }}</td>
+            <td>{{ ticket.name }}</td>
+            <td>{{ ticket.email }}</td>
+            <td>{{ ticket.description }}</td>
+            <td>
+                <form action="{{ url_for('update_status', ticket_id=ticket.id) }}" method="post">
+                    <select name="status">
+                        <option value="nyitott" {% if ticket.status == 'nyitott' %}selected{% endif %}>Nyitott</option>
+                        <option value="zárt" {% if ticket.status == 'zárt' %}selected{% endif %}>Zárt</option>
+                    </select>
+            </td>
+            <td><input type="text" name="admin_comments" value="{{ ticket.admin_comments }}"></td>
+            <td><button type="submit">Frissítés</button></form></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('logout') }}" class="btn">Kijelentkezés</a>
+</body>
+</html>

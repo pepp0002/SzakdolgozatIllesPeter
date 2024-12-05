@@ -1,0 +1,99 @@
+version: "3.1"
+
+intents:
+  - hibabejelentes
+  - nev_megadasa
+  - email_megadasa
+  - provide_details
+  - kezdem_hibabejelentes
+  - ujabb_hiba
+  - folytatom_hibabejelentes
+  - ticket_lekerdezes
+  - ticket_number_megadasa
+
+
+
+
+
+entities:
+  - name
+  - email
+  - description
+  - ticket_number
+  - error_code
+
+
+slots:
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+
+  email:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: email
+
+  description:
+    type: text
+    mappings:
+      - type: from_text
+        intent: provide_details
+
+  error_code:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: error_code
+
+  ticket_number:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: ticket_number
+
+
+
+actions:
+  - action_save_to_database
+  - action_reset_slots
+  - action_check_ticket_status
+
+
+
+
+responses:
+  utter_greet:
+    - text: "Szia! Miben segíthetek?"
+
+  utter_hibabejelentes:
+    - text: "Ehhez, szükségem lesz az adataidra,"
+
+  utter_ask_name:
+    - text: "Mi a neved?"
+
+  utter_ask_email:
+    - text: "Mi az email címed?"
+
+  utter_ask_error:
+    - text: "A bejelenteni kívánt hibának add meg a leírását kérlek."
+
+
+  utter_fallback:
+    - text: "Elnézést, én csak hibabejelentések fogadására vagyok programozva. Kérlek, csak hibákkal kapcsolatos információkat adj meg."
+
+
+
+
+
+
+
+
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

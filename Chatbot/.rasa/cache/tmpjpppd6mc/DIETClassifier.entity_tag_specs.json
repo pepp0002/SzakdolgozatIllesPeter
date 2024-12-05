@@ -1,0 +1,44 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-email",
+      "2": "I-email",
+      "3": "L-email",
+      "4": "U-email",
+      "5": "B-error_code",
+      "6": "I-error_code",
+      "7": "L-error_code",
+      "8": "U-error_code",
+      "9": "B-name",
+      "10": "I-name",
+      "11": "L-name",
+      "12": "U-name",
+      "13": "B-ticket_number",
+      "14": "I-ticket_number",
+      "15": "L-ticket_number",
+      "16": "U-ticket_number",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-email": 1,
+      "I-email": 2,
+      "L-email": 3,
+      "U-email": 4,
+      "B-error_code": 5,
+      "I-error_code": 6,
+      "L-error_code": 7,
+      "U-error_code": 8,
+      "B-name": 9,
+      "I-name": 10,
+      "L-name": 11,
+      "U-name": 12,
+      "B-ticket_number": 13,
+      "I-ticket_number": 14,
+      "L-ticket_number": 15,
+      "U-ticket_number": 16,
+      "O": 0
+    },
+    "num_tags": 17
+  }
+]

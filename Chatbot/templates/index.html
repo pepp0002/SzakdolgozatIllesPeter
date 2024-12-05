@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e8f5e9;
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #chat-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #chat-window {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+        .user-message, .bot-message {
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            max-width: 80%;
+            clear: both;
+        }
+        .user-message {
+            background-color: #DCF8C6;
+            text-align: right;
+            margin-left: auto;
+        }
+        .bot-message {
+            background-color: #f1f1f1;
+            text-align: left;
+        }
+        #input-container {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+            outline: none;
+        }
+        #send-button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+        #logout-button {
+            padding: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-header">Chatbot</div>
+        <div id="chat-window"></div>
+        <div id="input-container">
+            <input type="text" id="message-input" placeholder="Írj üzenetet...">
+            <button id="send-button" onclick="sendMessage()">Küldés</button>
+            <button id="logout-button" onclick="window.location.href='{{ url_for('logout') }}'">Kijelentkezés</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("message-input").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
+
+            if (message === "") return;
+
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("user-message");
+            userMessageDiv.textContent = message;
+            document.getElementById("chat-window").appendChild(userMessageDiv);
+
+            messageInput.value = "";
+
+            fetch("/webhook", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessages = data.response;
+                botMessages.forEach(msg => {
+                    const botMessageDiv = document.createElement("div");
+                    botMessageDiv.classList.add("bot-message");
+                    botMessageDiv.textContent = msg;
+                    document.getElementById("chat-window").appendChild(botMessageDiv);
+                    document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
+                });
+            });
+        }
+    </script>
+</body>
+</html>

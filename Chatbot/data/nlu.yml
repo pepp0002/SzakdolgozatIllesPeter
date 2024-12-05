@@ -1,0 +1,249 @@
+version: "3.1"
+
+nlu:
+- intent: hibabejelentes
+  examples: |
+    - Hibát szeretnék bejelenteni
+    - Problémát észleltem
+    - Jelenteni szeretném a hibát
+    - Segítségre van szükségem egy hibával kapcsolatban
+    - Szeretnék egy problémát bejelenteni
+
+
+- intent: nev_megadasa
+  examples: |
+    - [Bence](name)
+    - [Emese](name)
+    - A nevem [Áron](name)
+    - [Orsolya](name) vagyok
+    - [Róbert](name)
+    - [Enikő](name) a nevem
+    - Hívj [Zoltán](name)-nak
+    - Szólíts [Nóra](name)-nak
+    - [Dániel](name) vagyok
+    - A nevem [Zsombor](name)
+    - [Bálint](name)
+    - Szólíts [Eszter](name)-nek
+    - Hívj [Botond](name)-nak
+    - [Júlia](name)
+    - A nevem [Márta](name)
+    - [Dóra](name)
+    - [Lilla](name) vagyok
+    - [Andor](name) a nevem
+    - Szólíts [Ferenc](name)-nek
+    - A nevem [Krisztina](name)
+    - [Tibor](name)
+    - [Lajos](name) vagyok
+    - [György](name)
+    - Hívj [Ágnes](name)-nek
+    - [Tamara](name)
+    - [Anita](name) vagyok
+    - A nevem [Gyöngyi](name)
+    - [Sándor](name)
+    - Hívj [Gergő](name)-nek
+    - Szólíts [Miklós](name)-nak
+    - A nevem [Tímea](name)
+    - [Gergő](name)
+
+
+- intent: email_megadasa
+  examples: |
+    - [illes.janos@gmail.com](email)
+    - [tesztfelhasznalo123@yahoo.com](email)
+    - [info@vallalat.hu](email)
+    - [support@cegnev.com](email)
+    - [kapcsolat@domain.hu](email)
+    - [test.user@example.org](email)
+    - [példa@email.com](email)
+    - [felhasznalo_01@szolgaltato.net](email)
+    - [ügyfélszolgálat@cegnev.hu](email)
+    - [john.doe@domain.com](email)
+
+- intent: provide_details
+  examples: |
+    - Az alkalmazás folyamatosan lefagy.
+    - Nem tudok bejelentkezni a rendszerbe.
+    - A főoldal nem töltődik be.
+    - Hibakódot kaptam: 404.
+    - Az értesítések nem érkeznek meg.
+    - A beállítások nem mentődnek el.
+    - Lassú a rendszer.
+    - A képernyő fekete marad.
+    - A jelszó visszaállítása nem működik.
+    - Az alkalmazás újra és újra összeomlik.
+    - Nem megy
+    - Lefagy
+    - Elromlott
+    - Hibakód: [404](error_code)
+    - Hiba történt: [500](error_code)
+    - Kaptam egy [403](error_code) hibakódot
+    - Az alkalmazás hibakóddal leállt: [502](error_code)
+    - [503](error_code) hibát kaptam
+    - Az oldal nem érhető el, hibakód [404](error_code)
+    - A rendszer folyamatosan hibaüzenetet ad.
+    - Nem működik az alkalmazás.
+    - A bejelentkezésnél hiba lépett fel.
+    - Nem tölt be a főoldal.
+    - Lefagyott az egész rendszer.
+    - Nem tudok belépni, mindig hibát kapok.
+    - Az értesítések nem érkeznek meg.
+    - Valami gond van az oldallal, nem válaszol.
+    - Hibaüzenetet kaptam: "403 Forbidden".
+    - A profilom betöltése közben hiba történt.
+    - Nem sikerült elmenteni a módosításokat.
+    - Nem jelenik meg a tartalom az oldalon.
+    - Az alkalmazás váratlanul leállt.
+    - Nem sikerült a jelszó módosítás.
+    - Nem kapom meg a visszaigazoló emailt.
+    - Kijelentkezett, és nem tudok visszalépni.
+    - Túl lassú az alkalmazás, és folyamatosan megszakad.
+    - Az oldal betöltés közben 404 hibát jelez.
+    - Egyáltalán nem működik a keresési funkció.
+    - A termékek nem jelennek meg a listában.
+    - A rendszer 500-as hibával leáll.
+    - Nem tudom elmenteni a beállításokat, állandóan hiba lép fel.
+    - Az adatokat nem sikerült elküldeni.
+    - Az oldalon nem látszanak a frissítések.
+    - A rendszer nem válaszol, csak üres képernyőt látok.
+    - Folyamatosan 404 hibát kapok.
+    - Nem működik a regisztráció.
+    - A rendszer nem fogadja el a bejelentkezési adatokat.
+    - Az alkalmazás lassú, és gyakran összeomlik.
+    - Az oldal nem tölt be a böngészőben.
+    - Nincs hozzáférésem a kívánt oldalhoz, 403 hiba.
+    - Problémák vannak a jelszó visszaállításával.
+    - Hiba történt a kapcsolat létrehozásakor.
+    - Nem érkezik visszaigazoló email.
+    - A fájl feltöltése nem sikerül, hibaüzenet jelenik meg.
+    - Az oldal 500 hibát dob a megnyitáskor.
+    - Folyamatosan hibákat kapok a rendszer használata közben.
+    - Nem frissülnek a változtatások.
+    - Elakadt az oldal, nem tölt be tovább.
+    - Az oldal hibakóddal záródik le.
+    - Hibát ír a letöltés közben.
+    - A képek nem jelennek meg az oldalon.
+    - Nem tudok hozzáférni az adatokhoz.
+    - Nem tudom frissíteni a profilomat, folyton hiba lép fel.
+    - Az alkalmazás visszatér egy 502 hibával.
+    - Valami nem stimmel a belépési oldallal.
+    - Hibaüzenet jött fel, amikor megnyitottam az oldalt.
+    - Nem tudom elmenteni a módosításokat, hibát jelez.
+    - Hibás adatokat látok az oldalon.
+    - Valami nem működik megfelelően a profilomban.
+    - A rendszer nem válaszol a kérdésekre.
+    - Folyamatosan megszakad a kapcsolat.
+    - A gombok nem működnek az oldalon.
+    - Az alkalmazás összeomlott, és hibaüzenet jelent meg.
+    - Nem tudom használni az alkalmazást, mert mindig hibát kapok.
+    - Nem tölti be a képernyőt, csak egy hibaüzenetet látok.
+    - Tönkrement
+
+- intent: kezdem_hibabejelentes
+  examples: |
+    - Hibát szeretnék bejelenteni
+    - Problémám van
+    - Hiba történt
+
+- intent: ujabb_hiba
+  examples: |
+    - Van még egy hibám
+    - Újabb problémát szeretnék bejelenteni
+    - Még egy hiba jelentkezett
+
+- intent: folytatom_hibabejelentes
+  examples: |
+    - Folytatom a hibabejelentést
+    - Még egy problémám van
+    - További hibát szeretnék jelezni
+
+- intent: out_of_scope
+  examples: |
+    - Hogy vagy?
+    - Mi a helyzet?
+    - Mesélj magadról
+    - Mit csinálsz?
+    - Ki vagy te?
+    - Hogy telik a napod?
+    - Szeretsz beszélgetni?
+    - Mit gondolsz a hétvégéről?
+    - Van hobbid?
+    - Mik az érdeklődési köreid?
+    - Mi a kedvenc színed?
+    - Szereted a zenét?
+    - Milyen idő lesz holnap?
+    - Van valami jó híred?
+    - Mesélnél egy viccet?
+    - Mi a kedvenc ételed?
+    - Szeretsz olvasni?
+    - Hogy nézel ki?
+    - Mennyi az idő?
+    - Hol vagy most?
+    - Mi a kedvenc sportod?
+    - Mi az élet értelme?
+    - Szeretsz dolgozni?
+    - Tudsz táncolni?
+    - Mit tudsz a filmekről?
+    - Ki a kedvenc színészed?
+    - Honnan jöttél?
+    - Te robot vagy?
+    - Van barátod?
+    - Mesélj egy történetet
+    - Szoktál álmodni?
+    - Mit tudsz az űrről?
+    - Szereted az állatokat?
+    - Milyen szuperképességed van?
+    - Mi az a ChatGPT?
+    - Miért jöttél létre?
+    - Mik az erősségeid?
+    - Milyen nap van ma?
+    - Mesélj a jövőről
+    - Mik a gyengeségeid?
+    - Hány éves vagy?
+    - Hogyan működsz?
+    - Mikor születtél?
+    - Van családod?
+    - Mi a célod?
+    - Mi az álommunkád?
+    - Hogy találkoztunk?
+    - Miért vagy itt?
+    - Szereted a számítógépeket?
+    - Szeretsz utazni?
+    - Milyen zenét hallgatsz?
+    - Mi a kedvenc filmed?
+    - Hogyan szórakozol?
+    - Van kedvenc énekesed?
+    - Mi az első emléked?
+    - Milyen könyvet olvasol?
+    - Ki a legjobb barátod?
+    - Hova szeretnél utazni?
+    - Mit tennél szabadidődben?
+    - Hogy tervezed a napod?
+
+- intent: ticket_lekerdezes
+  examples: |
+    - Meg tudnád nézni a jegyem állapotát?
+    - Szeretném megtudni a jegyem státuszát
+    - Hol tart a feldolgozás?
+    - Van új információ a jeggyel kapcsolatban?
+    - Lekérdezném a jegy állapotát
+    - Kaphatnék frissítést a jegyről?
+    - Mi a jelenlegi állapot a jegyemnél?
+    - Tudsz adni információt a jegyről?
+    - Megnéznéd, hogy mi történt a jeggyel?
+    - Mi a státusza a jegynek?
+    - Rendelkezésre áll új adat a jegyről?
+    - Van valami friss a jegy státuszával kapcsolatban?
+    - Szeretném tudni, hol tart a jegy feldolgozása
+    - Hogy áll a jegyem feldolgozása?
+    - Tudnál informálni a jegyről?
+
+- intent: ticket_number_megadasa
+  examples: |
+    - A jegyszámom [TICKET-1234](ticket_number)
+    - [TICKET-5678](ticket_number) a jegyszámom
+    - Jegyszám: [TICKET-9876](ticket_number)
+    - Itt a jegyszámom: [TICKET-3456](ticket_number)
+    - A jegyem száma [TICKET-1111](ticket_number)
+    - [TICKET-0001](ticket_number)
+
+
