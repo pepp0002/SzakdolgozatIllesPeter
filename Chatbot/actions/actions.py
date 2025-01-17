@@ -65,8 +65,8 @@ class ActionSaveDatabase(Action):
 
     def send_email_notification(self, name, user_email, description, ticket_number):
         sender_email = "chatbotrasa1@gmail.com"
-        receiver_email = "illes.pepe@gmail.com"  # Admin email address
-        app_password = "axnx jepj bqjn adbg"  # Use the 16-character app password
+        receiver_email = "illes.pepe@gmail.com" 
+        app_password = "axnx jepj bqjn adbg" 
 
         message = MIMEMultipart("alternative")
         message["Subject"] = f"Új hibajegy érkezett: {ticket_number}"
