@@ -20,7 +20,7 @@ class ActionSaveDatabase(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # Get data from slots
+        
         name = tracker.get_slot("name")
         email = tracker.get_slot("email")
         description = tracker.get_slot("description")
