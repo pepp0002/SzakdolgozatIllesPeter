@@ -6,9 +6,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 RASA_API_URL = 'http://localhost:5005/webhooks/rest/webhook'
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Biztonságos kulcs a munkamenethez
+app.secret_key = os.urandom(24)  
 
-# MySQL adatbázis kapcsolat beállítása
+
 user_db_config = {
     'host': 'localhost',
     'user': 'root',
@@ -23,14 +23,14 @@ ticket_db_config = {
     'database': 'adat'
 }
 
-# Adatbázis kapcsolat létrehozása
+
 def get_user_db_connection():
     return mysql.connector.connect(**user_db_config)
 
 def get_ticket_db_connection():
     return mysql.connector.connect(**ticket_db_config)
 
-# Főoldal, amely elérhető a bejelentkezés után
+
 @app.route('/')
 def home():
     if 'logged_in' in session:
@@ -39,7 +39,7 @@ def home():
         return render_template('index.html')
     return redirect(url_for('login'))
 
-# Admin felület
+
 @app.route('/admin')
 def admin_dashboard():
     if 'logged_in' in session and session.get('role') == 'admin':
@@ -52,7 +52,7 @@ def admin_dashboard():
         return render_template('admin.html', tickets=tickets)
     return redirect(url_for('login'))
 
-# Megoldott hibajegyek megtekintése
+
 @app.route('/solved_tickets')
 def solved_tickets():
     if 'logged_in' in session and session.get('role') == 'admin':
@@ -65,7 +65,7 @@ def solved_tickets():
         return render_template('solved_tickets.html', tickets=solved_tickets)
     return redirect(url_for('login'))
 
-# Hibajegy frissítése státusz és megjegyzés hozzáadásával
+
 @app.route('/update_status/<int:ticket_id>', methods=['POST'])
 def update_status(ticket_id):
     if 'logged_in' not in session or session.get('role') != 'admin':
@@ -87,7 +87,7 @@ def update_status(ticket_id):
 
     return redirect(url_for('admin_dashboard'))
 
-# Bejelentkezés
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -110,7 +110,7 @@ def login():
             return "Hibás felhasználónév vagy jelszó."
     return render_template('login.html')
 
-# Regisztráció
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -130,13 +130,13 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html')
 
-# Kijelentkezés
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
-# Webhook endpoint a Rasa chatbot kommunikációhoz
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     if 'logged_in' not in session:
